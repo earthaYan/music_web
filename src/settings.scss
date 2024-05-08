@@ -1,0 +1,5 @@
+// 专门修改vuetify变量
+@use 'vuetify/settings' with (
+  $color-pack: false,
+  $utilities: false
+);
