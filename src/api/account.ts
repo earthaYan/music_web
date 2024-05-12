@@ -1,4 +1,4 @@
-import { $get } from './serviceBase'
+import { $get, $post } from './serviceBase'
 
 // 二维码key生成接口
 export const getQRCodeKey = async (): Promise<{
@@ -48,4 +48,12 @@ export const getQRCodeStatus = (params: {
 //刷新登录状态并返回新的cookie
 export const refreshLoginStatus = () => {
   return $get('/login/refresh')
+}
+//退出登录
+export const logout = () => {
+  return $get('/logout')
+}
+
+export const getAccountInfo = () => {
+  return $get('/user/account')
 }
