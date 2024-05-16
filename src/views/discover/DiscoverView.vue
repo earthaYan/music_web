@@ -1,5 +1,1 @@
-<script setup lang="ts"></script>
-
-<template>
-  <main></main>
-</template>
+<template>2</template>

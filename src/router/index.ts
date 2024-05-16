@@ -1,33 +1,76 @@
+import { KeepAlive } from 'vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-export const routes:RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/HomeView.vue'),
+    component: () => import('@/views/RootView.vue'),
     redirect: { name: 'discover' },
-    meta: {
-      title: '在线音乐',
-      menu: true
-    },
     children: [
       {
-        path: '/discover',
+        path: 'discover',
         name: 'discover',
         component: () => import('@/views/discover/DiscoverView.vue'),
         meta: {
-          title: '推荐',
-          menu: true
+          menu: 'discover',
+          KeepAlive: true
         }
+      },
+      {
+        path: 'music',
+        name: 'music',
+        component: () => import('@/views/music/MusicView.vue'),
+        redirect: { name: 'picked' },
+        meta: {
+          menu: 'music'
+        },
+        children: [
+          {
+            path: 'picked',
+            name: 'picked',
+            component: () => import('@/views/music/picked/PickedView.vue'),
+            meta: {
+              menu: 'music',
+              KeepAlive: true
+            }
+          },
+          {
+            path: 'top',
+            name: 'top',
+            component: () => import('@/views/music/top/TopView.vue'),
+            meta: {
+              menu: 'music',
+              KeepAlive: true
+            }
+          },
+          {
+            path: 'artist',
+            name: 'artist',
+            component: () => import('@/views/music/artist/ArtistView.vue'),
+            meta: {
+              menu: 'music',
+              title: '歌手',
+              KeepAlive: true
+            }
+          },
+          {
+            path: 'category',
+            name: 'category',
+            component: () => import('@/views/music/category/CategoryView.vue'),
+            meta: {
+              menu: 'music',
+              title: '分类歌单',
+              keepAlive: true
+            }
+          }
+        ]
+      },
+      {
+        path: 'playlist',
+        name: 'playlist',
+        component: () => import('')
       }
     ]
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/AboutView.vue')
   }
 ]
 const router = createRouter({
