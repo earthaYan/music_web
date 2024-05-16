@@ -1,4 +1,3 @@
-import { KeepAlive } from 'vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 export const routes: RouteRecordRaw[] = [
   {
@@ -68,7 +67,42 @@ export const routes: RouteRecordRaw[] = [
       {
         path: 'playlist',
         name: 'playlist',
-        component: () => import('')
+        component: () => import('@/views/playlist/PlayList.vue')
+      },
+      {
+        path: 'artistDetail',
+        name: 'artistDetail',
+        component: () => import('@/views/artist/ArtistDetail.vue')
+      },
+      {
+        path: 'album',
+        name: 'album',
+        component: () => import('@/views/album/AlbumView.vue')
+      },
+      {
+        path: 'video',
+        name: 'video',
+        component: () => import('@/views/video/VideoView.vue'),
+        meta: {
+          menu: 'video',
+          title: '视频',
+          KeepAlive: true
+        }
+      },
+      {
+        path: 'dj',
+        name: 'dj',
+        component: () => import('@/views/dj/DJ.vue'),
+        meta: {
+          menu: 'dj',
+          title: '电台',
+          KeepAlive: true
+        }
+      },
+      {
+        path: 'mvDetail',
+        name: 'mvDetail',
+        component: () => import('@/views/mv/MVDetailView.vue')
       }
     ]
   }
