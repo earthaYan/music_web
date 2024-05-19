@@ -103,6 +103,42 @@ export const routes: RouteRecordRaw[] = [
         path: 'mvDetail',
         name: 'mvDetail',
         component: () => import('@/views/mv/MVDetailView.vue')
+      },
+      {
+        path: 'love',
+        name: 'love',
+        component: () => import('@/views/love/LoveView.vue'),
+        meta: {
+          menu: 'love',
+          KeepAlive: true
+        }
+      },
+      {
+        path: 'local',
+        name: 'local',
+        component: () => import('@/views/local/LocalView.vue'),
+        meta: {
+          menu: 'local',
+          KeepAlive: true
+        }
+      },
+      {
+        path: 'download',
+        name: 'download',
+        component: () => import('@/views/download/DonwLoad.vue'),
+        meta: {
+          menu: 'download',
+          KeepAlive: true
+        }
+      },
+      {
+        path: 'recently',
+        name: 'recently',
+        component: () => import('@/views/recently/RecentMusic.vue'),
+        meta: {
+          menu: 'recently',
+          KeepAlive: true
+        }
       }
     ]
   }

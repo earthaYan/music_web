@@ -1,3 +1,4 @@
+import type { UserProfile } from '@/typing/user.type'
 import { $get, $post } from './serviceBase'
 
 // 二维码key生成接口
@@ -56,4 +57,15 @@ export const logout = () => {
 
 export const getAccountInfo = () => {
   return $get('/user/account')
+}
+
+export const loginByPhone = (
+  phone: string,
+  password: string
+): Promise<{
+  cookie: string
+  token: string
+  profile: UserProfile
+}> => {
+  return $get('/login/cellphone', { phone: phone, password: password })
 }
