@@ -22,8 +22,8 @@ import { Lock, Phone } from '@icon-park/vue-next'
 
 import { useUserStore } from '@/stores/useUserStore';
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
-const { handleLogin } = useUserStore()
+import { onMounted, ref } from 'vue';
+const { handleLogin, checkLogin } = useUserStore()
 const { isLogin, profile, showLogin } = storeToRefs
     (useUserStore())
 const phone = ref('')
@@ -31,4 +31,7 @@ const password = ref('')
 const loginSubmit = () => {
     handleLogin(phone.value, password.value)
 }
+onMounted(() => {
+    checkLogin()
+})
 </script>

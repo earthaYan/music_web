@@ -1,4 +1,5 @@
 import { loginByPhone } from '@/api/account'
+import { getLoginStatus } from '@/api/user'
 import type { UserProfile } from '@/typing/user.type'
 import { defineStore } from 'pinia'
 export const useUserStore = defineStore('user', {
@@ -23,8 +24,14 @@ export const useUserStore = defineStore('user', {
       document.cookie = res.cookie
       localStorage.setItem('USER-TOKEN', this.token)
       localStorage.setItem('USER-COOKIE', this.cookie)
-      this.profile = res.profile
+      await this.checkLogin()
       this.showLogin = false
+    },
+    async checkLogin() {
+      const res = await getLoginStatus()
+      console.log(res)
+
+      this.profile = res.profile
     }
   }
 })
