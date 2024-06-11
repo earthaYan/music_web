@@ -1,6 +1,5 @@
 <template>
-    <v-slider v-model="currentTime" color="green" thumb-size="8" :max="duration" @end="onSliderChange"
-        @mousedown="onSliderInput"></v-slider>
+    <v-slider v-model="currentTime" color="green" :max="duration" @end="onSliderChange" @mousedown="onSliderInput" />
 </template>
 <script setup lang="ts">
 

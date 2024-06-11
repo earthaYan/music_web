@@ -29,8 +29,6 @@ export const useUserStore = defineStore('user', {
     },
     async checkLogin() {
       const res = await getLoginStatus()
-      console.log(res)
-
       this.profile = res.profile
     }
   }

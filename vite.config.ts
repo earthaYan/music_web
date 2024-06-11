@@ -33,7 +33,6 @@ export default defineConfig(({ mode }) => {
           target: env.VITE_API_HOST,
           changeOrigin: true,
           rewrite: (path) => {
-            console.log(path, path.replace(/^\/api/, ''))
             return path.replace(/^\/api/, '')
           }
         }

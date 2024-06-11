@@ -5,7 +5,7 @@
         <v-main>
             <router-view />
         </v-main>
-        <FooterView />
+        <!-- <FooterView /> -->
     </v-app>
 </template>
 <script setup lang="ts">

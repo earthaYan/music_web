@@ -14,7 +14,6 @@ export const getSearchSuggest = (
 }
 export const getSearchHotDetail = (): Promise<SearchHotDetail[]> => {
   return $get('/search/hot/detail').then((res) => {
-    console.log(res)
     return res.data
   })
 }
