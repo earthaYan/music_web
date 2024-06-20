@@ -16,4 +16,5 @@ import { usePlayerStore } from "@/stores/usePlayerStore";
 import { OpticalDisk } from '@/assets/img/index';
 import { toRefs } from "vue";
 const { song } = toRefs(usePlayerStore())
+console.log(song.value)
 </script>

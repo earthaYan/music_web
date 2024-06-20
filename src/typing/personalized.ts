@@ -1,4 +1,4 @@
-export interface IPlayList {
+export interface Personalized {
   id: number
   type: number
   name: string
@@ -12,7 +12,17 @@ export interface IPlayList {
   alg: string
 }
 
-export interface PNSSongAlbumArtists {
+export interface PersonalizedNewSong {
+  id: number
+  type: number
+  name: string
+  picUrl: string
+  canDislike: boolean
+  song: PNSSong
+  alg: string
+}
+
+export interface PNSSongArtists {
   name: string
   id: number
   picId: number
@@ -42,6 +52,103 @@ export interface PNSSongAlbumArtist {
   topicPerson: number
 }
 
+export interface PNSSongAlbumArtists {
+  name: string
+  id: number
+  picId: number
+  img1v1Id: number
+  briefDesc: string
+  picUrl: string
+  img1v1Url: string
+  albumSize: number
+  alias: any[]
+  trans: string
+  musicSize: number
+  topicPerson: number
+}
+
+export interface PNSSongAlbum {
+  name: string
+  id: number
+  type: string
+  size: number
+  picId: number
+  blurPicUrl: string
+  companyId: number
+  pic: number
+  picUrl: string
+  publishTime: number
+  description: string
+  tags: string
+  company: string
+  briefDesc: string
+  artist: PNSSongAlbumArtist
+  songs: any[]
+  alias: any[]
+  status: number
+  copyrightId: number
+  commentThreadId: string
+  artists: PNSSongAlbumArtists[]
+  subType: string
+  onSale: boolean
+  mark: number
+  picId_str: string
+}
+
+export interface PNSSongBMusic {
+  id: number
+  size: number
+  extension: string
+  sr: number
+  dfsId: number
+  bitrate: number
+  playTime: number
+  volumeDelta: number
+}
+
+export interface PNSSongHMusic {
+  id: number
+  size: number
+  extension: string
+  sr: number
+  dfsId: number
+  bitrate: number
+  playTime: number
+  volumeDelta: number
+}
+
+export interface PNSSongMMusic {
+  id: number
+  size: number
+  extension: string
+  sr: number
+  dfsId: number
+  bitrate: number
+  playTime: number
+  volumeDelta: number
+}
+
+export interface PNSSongLMusic {
+  id: number
+  size: number
+  extension: string
+  sr: number
+  dfsId: number
+  bitrate: number
+  playTime: number
+  volumeDelta: number
+}
+
+export interface PNSSongPrivilegeFreeTrialPrivilege {
+  resConsumable: boolean
+  userConsumable: boolean
+}
+
+export interface PNSSongPrivilegeChargeInfoList {
+  rate: number
+  chargeType: number
+}
+
 export interface PNSSongPrivilege {
   id: number
   fee: number
@@ -63,63 +170,7 @@ export interface PNSSongPrivilege {
   freeTrialPrivilege: PNSSongPrivilegeFreeTrialPrivilege
   chargeInfoList: PNSSongPrivilegeChargeInfoList[]
 }
-export interface PNSSongPrivilegeFreeTrialPrivilege {
-  resConsumable: boolean
-  userConsumable: boolean
-}
-export interface PNSSongPrivilegeChargeInfoList {
-  rate: number
-  chargeType: number
-}
-export interface PNSSongLMusic {
-  id: number
-  size: number
-  extension: string
-  sr: number
-  dfsId: number
-  bitrate: number
-  playTime: number
-  volumeDelta: number
-}
-export interface PNSSongMMusic {
-  id: number
-  size: number
-  extension: string
-  sr: number
-  dfsId: number
-  bitrate: number
-  playTime: number
-  volumeDelta: number
-}
-export interface PNSSongHMusic {
-  id: number
-  size: number
-  extension: string
-  sr: number
-  dfsId: number
-  bitrate: number
-  playTime: number
-  volumeDelta: number
-}
-export interface PNSSongBMusic {
-  id: number
-  size: number
-  extension: string
-  sr: number
-  dfsId: number
-  bitrate: number
-  playTime: number
-  volumeDelta: number
-}
-export interface INewSong {
-  id: number
-  type: number
-  name: string
-  picUrl: string
-  canDislike: boolean
-  song: PNSSong
-  alg: string
-}
+
 export interface PNSSong {
   name: string
   id: number
@@ -158,47 +209,7 @@ export interface PNSSong {
   exclusive: boolean
   privilege: PNSSongPrivilege
 }
-export interface PNSSongArtists {
-  name: string
-  id: number
-  picId: number
-  img1v1Id: number
-  briefDesc: string
-  picUrl: string
-  img1v1Url: string
-  albumSize: number
-  alias: any[]
-  trans: string
-  musicSize: number
-  topicPerson: number
-}
-export interface PNSSongAlbum {
-  name: string
-  id: number
-  type: string
-  size: number
-  picId: number
-  blurPicUrl: string
-  companyId: number
-  pic: number
-  picUrl: string
-  publishTime: number
-  description: string
-  tags: string
-  company: string
-  briefDesc: string
-  artist: PNSSongAlbumArtist
-  songs: any[]
-  alias: any[]
-  status: number
-  copyrightId: number
-  commentThreadId: string
-  artists: PNSSongAlbumArtists[]
-  subType: string
-  onSale: boolean
-  mark: number
-  picId_str: string
-}
+
 export interface PersonalizedMv {
   id: number
   type: number
@@ -217,4 +228,13 @@ export interface PersonalizedMv {
   artistName: string
   artistId: number
   alg: string
+}
+export interface DjProgram {
+  id: number
+  type: number
+  name: string
+  copywriter: string
+  picUrl: string
+  canDislike: boolean
+  trackNumberUpdateTime?: any
 }

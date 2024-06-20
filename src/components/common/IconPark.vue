@@ -18,6 +18,5 @@ defineProps<{
 <style lang="scss">
 .i-icon {
     position: relative;
-    bottom: -4px;
 }
 </style>

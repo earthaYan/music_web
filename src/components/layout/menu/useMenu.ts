@@ -50,35 +50,6 @@ export const useMenu = () => {
           theme: 'outline'
         }
       ]
-    },
-    {
-      name: '我的音乐',
-      menus: [
-        {
-          name: '我喜欢',
-          key: 'love',
-          icon: Like,
-          theme: 'outline'
-        },
-        {
-          name: '本地歌曲',
-          key: 'local',
-          icon: Computer,
-          theme: 'outline'
-        },
-        {
-          name: '下载歌曲',
-          key: 'download',
-          icon: DownloadThree,
-          theme: 'outline'
-        },
-        {
-          name: '最近播放',
-          key: 'recently',
-          icon: PlayTwo,
-          theme: 'outline'
-        }
-      ]
     }
   ]
   const route = useRoute()

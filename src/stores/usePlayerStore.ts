@@ -1,18 +1,16 @@
-import { getSongUrlById, getSongDetailById } from '@/api/song'
-import type { Song, SongUrl } from '@/typing/player.type'
-import { sample } from 'lodash'
 import { defineStore, storeToRefs } from 'pinia'
+import { getSongDetailById, getSongUrlById } from '@/api/song'
 import { onMounted, onUnmounted, watch } from 'vue'
+import type { Song } from '@/typing/player.type'
+import type { SongUrl } from '@/typing/songUrl'
+import _ from 'lodash'
 
-const KEYS = {
-  volume: 'PLAYER-VOLUME'
-}
 export const usePlayerStore = defineStore({
   id: 'player',
   state: () => ({
     audio: new Audio(),
     loopType: 0, //循环模式 0 单曲循环 1 列表循环 2随机播放
-    volume: parseInt(localStorage.getItem(KEYS.volume) ?? '60'), //音量
+    volume: 60, //音量
     playList: [] as Song[], //播放列表,
     showPlayList: false,
     id: 0,
@@ -25,7 +23,7 @@ export const usePlayerStore = defineStore({
     ended: false, //是否播放结束
     muted: false, //是否静音
     currentTime: 0, //当前播放时间
-    duration: 100 //总播放时长
+    duration: 0 //总播放时长
   }),
   getters: {
     playListCount: (state) => {
@@ -94,15 +92,15 @@ export const usePlayerStore = defineStore({
       this.audio.src = data.url
       this.audio
         .play()
-        .then(() => {
+        .then((res) => {
           this.isPlaying = true
           this.songUrl = data
           this.url = data.url
           this.id = id
           this.songDetail()
         })
-        .catch((err) => {
-          console.log(err)
+        .catch((res) => {
+          console.log(res)
         })
     },
     //播放结束
@@ -122,7 +120,7 @@ export const usePlayerStore = defineStore({
     },
     async songDetail() {
       this.song = await getSongDetailById(this.id)
-      console.log(this.song, 'use')
+
       this.pushPlayList(false, this.song)
     },
     //重新播放
@@ -146,7 +144,8 @@ export const usePlayerStore = defineStore({
     },
     //随机播放
     randomPlay() {
-      this.play(sample(this.playList)?.id as number)
+      const id: number = _.sample(this.playList)?.id ?? 0
+      this.play(id)
     },
     //播放、暂停
     togglePlay() {
@@ -195,18 +194,17 @@ export const usePlayerStore = defineStore({
     },
     //修改播放时间
     onSliderChange(val: number) {
-      console.log('修改播放时间')
       this.currentTime = val
       this.sliderInput = false
       this.audio.currentTime = val
     },
     //播放时间拖动中
-    onSliderInput() {
-      console.log('拖动中')
+    onSliderInput(val: number) {
       this.sliderInput = true
     },
     //定时器
     interval() {
+      console.log(this.isPlaying)
       if (this.isPlaying && !this.sliderInput) {
         this.currentTime = parseInt(this.audio.currentTime.toString())
         this.duration = parseInt(this.audio.duration.toString())
@@ -215,15 +213,19 @@ export const usePlayerStore = defineStore({
     }
   }
 })
+
 export const userPlayerInit = () => {
-  let timer: NodeJS.Timeout
+  let timer: NodeJS.Timer
   const { init, interval, playEnd } = usePlayerStore()
+
   const { ended } = storeToRefs(usePlayerStore())
+
   //监听播放结束
   watch(ended, (ended) => {
     if (!ended) return
     playEnd()
   })
+
   //启动定时器
   onMounted(() => {
     init()
@@ -233,6 +235,6 @@ export const userPlayerInit = () => {
   //清除定时器
   onUnmounted(() => {
     console.log('清除定时器')
-    clearInterval(timer)
+    clearInterval(timer as NodeJS.Timeout)
   })
 }

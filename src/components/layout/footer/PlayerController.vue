@@ -3,7 +3,7 @@
         <IconPark :icon="loopType === 0 ? PlayOnce : loopType === 1 ? LoopOnce : ShuffleOne" size="20"
             class="hover-text" @click="toggleLoop" />
         <IconPark :icon="GoStart" size="20" theme="filled" @click="prev" />
-        <IconPark :icon="isPause ? PauseOne : Play" size="20" theme="filled" @click="togglePlay" />
+        <IconPark :icon="isPause ? Play : PauseOne" size="20" theme="filled" @click="togglePlay" />
         <IconPark :icon="GoEnd" size="20" @click="next" />
     </div>
 </template>
