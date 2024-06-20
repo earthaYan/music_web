@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="header d-flex justify-space-between align-items-center">
-            <div>全部视频</div>
+
             <v-row>
                 <v-col @click="idChange(item.id)" :class="{ 'text-active': pageData.id === item.id }"
                     v-for="item in videoGroup.slice(0, 8)" :key="item.id">{{ item.name }}
